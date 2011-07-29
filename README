@@ -1,0 +1,4 @@
+open favstar
+
+favstarのページを開くmikutterコマンド「こいつのfavstarを開く」を追加します。
+mikutter.rbがあるディレクトリにある plugin/ ディレクトリ以下にこのリポジトリをチェックアウトしてください
