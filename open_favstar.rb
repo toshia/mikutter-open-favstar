@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 # favstarを開く
 
-Module.new do
-  Plugin.create(:open_favstar).add_event_filter(:command){ |menu|
-    menu[:open_favstar] = {
-      :slug => :open_favstar,
-      :name => 'こいつのfavstarを見る',
-      :condition => lambda{ |m| m.message.repliable? },
-      :exec => lambda{ |m| Gtk::openurl("http://favstar.fm/users/#{m.message.user.idname}/recent") },
-      :visible => true,
-      :role => :message }
-    [menu]
-  }
+Plugin.create(:open_favstar) do
+  command(:open_favstar,
+          name: 'こいつのfavstarを見る',
+          condition: Plugin::Command[:HashMessage],
+          visible: true,
+          role: :timeline) do |m|
+    m.messages.map do |msg|
+      Gtk::openurl("http://favstar.fm/users/#{msg.message.user.idname}/recent")
+    end
+  end
 end
