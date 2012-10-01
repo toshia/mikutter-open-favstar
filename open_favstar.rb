@@ -4,7 +4,7 @@
 Plugin.create(:open_favstar) do
   command(:open_favstar,
           name: 'こいつのfavstarを見る',
-          condition: Plugin::Command[:HashMessage],
+          condition: Plugin::Command[:HasMessage],
           visible: true,
           role: :timeline) do |m|
     m.messages.map do |msg|
